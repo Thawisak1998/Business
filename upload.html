@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>อัปโหลดไฟล์ข้อมูล</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- เพิ่ม SheetJS สำหรับอ่านไฟล์ Excel -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <nav class="nav-tabs">
+      <a href="index.html">เครื่องมือคำนวณ</a>
+      <a href="income.html">วิเคราะห์รายรับ-รายจ่าย</a>
+      <a href="dcf-new.html">DCF แบบใหม่</a>
+      <a href="upload.html" class="active">อัปโหลดไฟล์</a>
+      <a href="guide.html">คู่มือการใช้งาน</a>
+    </nav>
+
+    <h1 class="page-title">อัปโหลดไฟล์ข้อมูลทางการเงิน</h1>
+
+    <div class="tool-card">
+      <h2>ขั้นตอนการใช้งาน</h2>
+      <div class="note">
+        <ol>
+          <li>เลือกประเภทไฟล์ที่ต้องการอัปโหลด</li>
+          <li>ดาวน์โหลดไฟล์ตัวอย่าง (ถ้าต้องการ)</li>
+          <li>กรอกข้อมูลในไฟล์ตามรูปแบบตัวอย่าง</li>
+          <li>อัปโหลดไฟล์ที่กรอกข้อมูลแล้ว</li>
+          <li>ระบบจะประมวลผลและแสดงผลลัพธ์</li>
+        </ol>
+      </div>
+
+      <h2>เลือกรูปแบบไฟล์</h2>
+      
+      <div class="form-group">
+        <label for="file-type" class="form-label">ประเภทไฟล์:</label>
+        <select id="file-type" class="form-control">
+          <option value="cashflow">กระแสเงินสด</option>
+          <option value="income">รายรับ-รายจ่าย</option>
+          <option value="investment">ข้อมูลการลงทุน</option>
+          <option value="business-valuation">วิเคราะห์ธุรกิจ (Business Valuation)</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <button id="download-template" class="btn btn-secondary">ดาวน์โหลดไฟล์ตัวอย่าง</button>
+        <small class="form-text">ดาวน์โหลดไฟล์ตัวอย่างเพื่อกรอกข้อมูล</small>
+      </div>
+
+      <div class="form-group">
+        <label for="file-upload" class="form-label">เลือกไฟล์ที่กรอกข้อมูลแล้ว (CSV/JSON/XLSX):</label>
+        <input type="file" id="file-upload" class="form-control" accept=".csv,.json,.xlsx,.xls">
+        <small class="form-text">รองรับไฟล์ CSV, JSON และ Excel (XLSX)</small>
+      </div>
+
+      <div class="form-group">
+        <button id="upload-btn" class="btn btn-primary">อัปโหลดและประมวลผล</button>
+        <button id="cancel-btn" class="btn btn-danger">ยกเลิก</button>
+      </div>
+
+      <div id="file-preview" class="table-responsive" style="display: none;">
+        <h3>ตัวอย่างข้อมูลจากไฟล์</h3>
+        <table class="table" id="preview-table">
+          <thead>
+            <tr id="preview-headers"></tr>
+          </thead>
+          <tbody id="preview-data"></tbody>
+        </table>
+      </div>
+
+      <div id="calculation-results" class="result-box" style="display: none;">
+        <h3 class="result-title">ผลลัพธ์การคำนวณ</h3>
+        <div id="results-container"></div>
+        <button id="use-data-btn" class="btn btn-secondary">ใช้ข้อมูลนี้ในการคำนวณ</button>
+      </div>
+
+      <div id="error-message" class="alert alert-danger" style="display: none;"></div>
+    </div>
+  </div>
+  
+
+  <script src="upload.js"></script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <title>วิธีคำนวณ CAPM, WACC และ DCF</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f7fa;
+      color: #333;
+      padding: 40px;
+      line-height: 1.6;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #34495e;
+    }
+
+    section {
+      margin-bottom: 50px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #ddd;
+    }
+
+    /* CAPM */
+    #capm h2 {
+      color: #2980b9;
+      border-bottom: 3px solid #2980b9;
+      padding-bottom: 8px;
+    }
+    #capm p {
+      background-color: #eaf4fb;
+      padding: 15px 20px;
+      border-left: 6px solid #2980b9;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(41, 128, 185, 0.15);
+      margin-bottom: 20px;
+    }
+    #capm a {
+      color: #2980b9;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    #capm a:hover {
+      text-decoration: underline;
+    }
+
+    /* WACC */
+    #wacc h2 {
+      color: #27ae60;
+      border-bottom: 3px solid #27ae60;
+      padding-bottom: 8px;
+    }
+    #wacc p {
+      background-color: #e6f4ea;
+      padding: 15px 20px;
+      border-left: 6px solid #27ae60;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(39, 174, 96, 0.15);
+      margin-bottom: 20px;
+    }
+    #wacc a {
+      color: #27ae60;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    #wacc a:hover {
+      text-decoration: underline;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>วิธีคำนวณ CAPM, WACC และ DCF</h1>
+
+  <!-- CAPM Section -->
+  <section id="capm">
+    <h2>วิธีหาค่าต่าง ๆ สำหรับการคำนวณ CAPM</h2>
+
+    <h3>1. วิธีหาค่า Rf (Risk-Free Rate)</h3>
+    <p>
+      คุณสามารถดูค่า Rf ได้จากเว็บไซต์ธนาคารแห่งประเทศไทย:<br>
+      <a href="https://app.bot.or.th/BIZSHR/stat/DataSeries/6" target="_blank" rel="noopener noreferrer">
+        https://app.bot.or.th/BIZSHR/stat/DataSeries/6
+      </a>
+    </p>
+
+    <h3>2. วิธีหาค่า Beta</h3>
+    <p>
+      เข้าไปที่เว็บไซต์ตลาดหลักทรัพย์แห่งประเทศไทย แล้วค้นหาชื่อหุ้นที่ต้องการ เช่น KASET:<br>
+      <a href="https://www.set.or.th/th/market/product/stock/quote/kaset/factsheet" target="_blank" rel="noopener noreferrer">
+        https://www.set.or.th/.../kaset/factsheet
+      </a>
+    </p>
+
+    <h3>3. วิธีหาค่า Rm (Expected Market Return)</h3>
+    <p>
+      ค่าของ Rm คำนวณจากสูตร:<br>
+      <strong>Rm = Rf + ERP</strong><br><br>
+      โดยค่า ERP (Equity Risk Premium) สามารถดูได้จากเว็บไซต์ของ Professor Damodaran:<br>
+      <a href="https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/ctryprem.html" target="_blank" rel="noopener noreferrer">
+        https://pages.stern.nyu.edu/~adamodar/...
+      </a>
+    </p>
+  </section>
+
+  <!-- WACC Section -->
+  <section id="wacc">
+    <h2>วิธีคำนวณหาค่า WACC (Weighted Average Cost of Capital)</h2>
+
+    <h3>1. สูตรการคำนวณ WACC</h3>
+    <p>
+      <strong>WACC = (E/V × Re) + (D/V × Rd × (1 – Tc))</strong><br><br>
+      โดยที่:<br>
+      - E = มูลค่าของส่วนผู้ถือหุ้น (Equity)<br>
+      - D = มูลค่าของหนี้สิน (Debt)<br>
+      - V = E + D (รวมทุนทั้งหมด)<br>
+      - Re = ต้นทุนของผู้ถือหุ้น (หาได้จาก CAPM)<br>
+      - Rd = ต้นทุนของหนี้สิน (อัตราดอกเบี้ยที่บริษัทกู้)<br>
+      - Tc = อัตราภาษีนิติบุคคล
+    </p>
+
+    <h3>2. วิธีหาค่า Re (ต้นทุนของผู้ถือหุ้น)</h3>
+    <p>
+      หาค่า Re โดยใช้สูตร CAPM: <strong>Re = Rf + Beta × (Rm - Rf)</strong><br>
+      ดูวิธีหาค่าต่าง ๆ สำหรับ CAPM ได้ที่หน้านี้: <br>
+      <a href="https://app.bot.or.th/BIZSHR/stat/DataSeries/6" target="_blank" rel="noopener noreferrer">ค่า Rf (BOT)</a> |
+      <a href="https://www.set.or.th/th/market/product/stock/quote/kaset/factsheet" target="_blank" rel="noopener noreferrer">ค่า Beta (SET)</a> |
+      <a href="https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/ctryprem.html" target="_blank" rel="noopener noreferrer">ค่า ERP (Damodaran)</a>
+    </p>
+
+    <h3>3. วิธีหาค่า Rd (ต้นทุนของหนี้)</h3>
+    <p>
+      ค่าดอกเบี้ยที่บริษัทต้องจ่ายจากการกู้เงิน หรือดูได้จากงบการเงินในหัวข้อ "ต้นทุนทางการเงิน" (Interest Expense)<br>
+      ตัวอย่างแหล่งดู: <br>
+      <a href="https://www.set.or.th/th/market/product/stock/quote" target="_blank" rel="noopener noreferrer">
+        งบการเงินของบริษัทในเว็บไซต์ตลาดหลักทรัพย์
+      </a>
+    </p>
+
+    <h3>4. อัตราภาษี Tc</h3>
+    <p>
+      Tc คือ อัตราภาษีเงินได้นิติบุคคล ปกติในประเทศไทยอยู่ที่ <strong>20%</strong><br>
+      ตรวจสอบข้อมูลจากกรมสรรพากร: <br>
+      <a href="https://www.rd.go.th" target="_blank" rel="noopener noreferrer">https://www.rd.go.th</a>
+    </p>
+  </section>
+
+</body>
+</html>

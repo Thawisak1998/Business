@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DCF แบบใหม่</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <nav class="nav-tabs">
+      <a href="index.html">เครื่องมือคำนวณ</a>
+      <a href="income.html">วิเคราะห์รายรับ-รายจ่าย</a>
+      <a href="dcf-new.html" class="active">DCF แบบใหม่</a>
+      <a href="upload.html">อัปโหลดไฟล์</a>
+      <a href="guide.html">คู่มือการใช้งาน</a>
+    </nav>
+
+    <h1 class="page-title">คำนวณ DCF แบบใหม่ (รวมปัจจัยความเสี่ยง)</h1>
+
+    <div class="tool-card" id="dcf-new-section">
+      <div class="form-group">
+        <label for="initial-investment" class="form-label">เงินลงทุนเริ่มต้น (บาท)</label>
+        <input type="number" id="initial-investment" class="form-control" value="4000000">
+      </div>
+      
+      <div class="form-group">
+        <label for="base-cash-flow" class="form-label">กระแสเงินสดปีฐาน (บาท)</label>
+        <input type="number" id="base-cash-flow" class="form-control" value="500000">
+      </div>
+
+      <div class="form-group">
+        <label for="wacc" class="form-label">ค่า WACC (%)</label>
+        <input type="number" id="wacc" class="form-control" step="0.01" value="8.58">
+      </div>
+
+      <h3>กำหนดช่วงปีการเติบโต</h3>
+      <div class="table-responsive">
+        <table class="table" id="growth-rate-table">
+          <thead>
+            <tr>
+              <th>จากปี</th>
+              <th>ถึงปี</th>
+              <th>อัตราเติบโต (%)</th>
+              <th>ลบ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="number" class="form-control start-year" value="1" min="1"></td>
+              <td><input type="number" class="form-control end-year" value="5" min="1"></td>
+              <td><input type="number" class="form-control growth-rate" value="10.00" step="0.01"></td>
+              <td><button class="btn btn-danger remove-growth-rate">ลบ</button></td>
+            </tr>
+            <tr>
+              <td><input type="number" class="form-control start-year" value="6" min="1"></td>
+              <td><input type="number" class="form-control end-year" value="8" min="1"></td>
+              <td><input type="number" class="form-control growth-rate" value="8.00" step="0.01"></td>
+              <td><button class="btn btn-danger remove-growth-rate">ลบ</button></td>
+            </tr>
+            <tr>
+              <td><input type="number" class="form-control start-year" value="9" min="1"></td>
+              <td><input type="number" class="form-control end-year" value="10" min="1"></td>
+              <td><input type="number" class="form-control growth-rate" value="5.00" step="0.01"></td>
+              <td><button class="btn btn-danger remove-growth-rate">ลบ</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="button-group">
+        <button id="add-growth-rate" class="btn btn-secondary">เพิ่มช่วงปี</button>
+        <button id="auto-arrange" class="btn btn-secondary">จัดเรียงปี</button>
+      </div>
+
+      <h3>กำหนดเหตุการณ์และปัจจัยความเสี่ยง</h3>
+      <div class="table-responsive">
+        <table class="table" id="risk-factors-table">
+          <thead>
+            <tr>
+              <th>รหัสเหตุการณ์</th>
+              <th>เหตุการณ์</th>
+              <th>ค่าผลกระทบ (θ)</th>
+              <th>ลบ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td><input type="text" class="form-control risk-event" value="น้ำท่วม"></td>
+              <td><input type="number" class="form-control risk-factor" value="0.8" step="0.1"></td>
+              <td><button class="btn btn-danger remove-risk-factor">ลบ</button></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td><input type="text" class="form-control risk-event" value="ราคาข้าวตก"></td>
+              <td><input type="number" class="form-control risk-factor" value="0.9" step="0.1"></td>
+              <td><button class="btn btn-danger remove-risk-factor">ลบ</button></td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td><input type="text" class="form-control risk-event" value="ปกติ"></td>
+              <td><input type="number" class="form-control risk-factor" value="1.0" step="0.1"></td>
+              <td><button class="btn btn-danger remove-risk-factor">ลบ</button></td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td><input type="text" class="form-control risk-event" value="ผลผลิตดี"></td>
+              <td><input type="number" class="form-control risk-factor" value="1.1" step="0.1"></td>
+              <td><button class="btn btn-danger remove-risk-factor">ลบ</button></td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td><input type="text" class="form-control risk-event" value="ราคาข้าวขึ้น"></td>
+              <td><input type="number" class="form-control risk-factor" value="1.2" step="0.1"></td>
+              <td><button class="btn btn-danger remove-risk-factor">ลบ</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <button id="add-risk-factor" class="btn btn-secondary">เพิ่มเหตุการณ์</button>
+
+      <h3>ตารางคำนวณ DCF แบบใหม่</h3>
+      <div class="table-responsive">
+        <table class="table" id="dcf-new-table">
+          <thead>
+            <tr>
+              <th>ปี</th>
+              <th>กระแสเงินสดพื้นฐาน</th>
+              <th>อัตราการเติบโต</th>
+              <th>รหัสเหตุการณ์</th>
+              <th>เหตุการณ์</th>
+              <th>ปัจจัยความเสี่ยง (θ)</th>
+              <th>กระแสเงินสดปรับค่า</th>
+              <th>อัตราคิดลด (WACC)</th>
+              <th>มูลค่าปัจจุบัน</th>
+            </tr>
+          </thead>
+          <tbody id="dcf-new-tbody">
+            <!-- ข้อมูลจะถูกเพิ่มโดย JavaScript -->
+          </tbody>
+        </table>
+      </div>
+
+      <button id="calculate-dcf-new" class="btn btn-primary">คำนวณ DCF แบบใหม่</button>
+      
+      <div class="result-box result-highlight">
+        <h3 class="result-title">มูลค่าปัจจุบันสุทธิ (NPV): <span id="dcf-new-npv" class="result-value">0.00</span> ล้านบาท</h3>
+        <h3 class="result-title">อัตราผลตอบแทนภายใน (IRR): <span id="dcf-new-irr" class="result-value">0.00</span>%</h3>
+        <h3 class="result-title">ดัชนีความสามารถในการทำกำไร (PI): <span id="dcf-new-pi" class="result-value">0.00</span></h3>
+      </div>
+
+      <h3>การวิเคราะห์ความอ่อนไหว (Sensitivity Analysis)</h3>
+      <div class="table-responsive">
+        <table class="table" id="sensitivity-table">
+          <thead>
+            <tr>
+              <th>อัตราคิดลด (WACC)</th>
+              <th>NPV</th>
+              <th>PI</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>6%</td>
+              <td id="sens-6-npv">0.00</td>
+              <td id="sens-6-pi">0.00</td>
+            </tr>
+            <tr>
+              <td>7%</td>
+              <td id="sens-7-npv">0.00</td>
+              <td id="sens-7-pi">0.00</td>
+            </tr>
+            <tr>
+              <td>8%</td>
+              <td id="sens-8-npv">0.00</td>
+              <td id="sens-8-pi">0.00</td>
+            </tr>
+            <tr>
+              <td>9%</td>
+              <td id="sens-9-npv">0.00</td>
+              <td id="sens-9-pi">0.00</td>
+            </tr>
+            <tr>
+              <td>10%</td>
+              <td id="sens-10-npv">0.00</td>
+              <td id="sens-10-pi">0.00</td>
+            </tr>
+            <tr>
+              <td>11%</td>
+              <td id="sens-11-npv">0.00</td>
+              <td id="sens-11-pi">0.00</td>
+            </tr>
+            <tr>
+              <td>12%</td>
+              <td id="sens-12-npv">0.00</td>
+              <td id="sens-12-pi">0.00</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="script-dcf-new.js"></script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>วิเคราะห์รายรับ-รายจ่าย</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <nav class="nav-tabs">
+      <a href="index.html">เครื่องมือคำนวณ</a>
+      <a href="income.html" class="active">วิเคราะห์รายรับ-รายจ่าย</a>
+      <a href="dcf-new.html">DCF แบบใหม่</a>
+      <a href="upload.html">อัปโหลดไฟล์</a>
+      <a href="guide.html">คู่มือการใช้งาน</a>
+    </nav>
+
+    <h1 class="page-title">วิเคราะห์รายรับ-รายจ่ายโครงการ</h1>
+
+    <!-- FCF Section -->
+    <div class="tool-card" id="fcf-section">
+      <div class="note">เพิ่มรายการรายรับและรายจ่าย พร้อมปี ระบบจะคำนวณรายปีและรวมให้อัตโนมัติ</div>
+
+      <div class="table-responsive">
+        <table class="table" id="fcf-table">
+          <thead>
+            <tr>
+              <th>ประเภท</th>
+              <th>รายการ</th>
+              <th>จำนวนเงิน (บาท)</th>
+              <th>ปี</th>
+              <th>ลบ</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <button id="add-fcf-row" class="btn btn-secondary">เพิ่มรายการ</button>
+
+      <div class="result-box">
+        <h3 class="result-title">รวมรายรับ: <span id="total-income" class="result-value">0.00</span> ล้านบาท</h3>
+        <h3 class="result-title">รวมรายจ่าย: <span id="total-expense" class="result-value">0.00</span> ล้านบาท</h3>
+        <h3 class="result-title">Free Cash Flow: <span id="fcf-result" class="result-value">0.00</span> ล้านบาท</h3>
+      </div>
+
+      <div class="table-responsive">
+        <h2>สรุปตามปี</h2>
+        <table class="table" id="fcf-summary-table">
+          <thead>
+            <tr>
+              <th>ปี</th>
+              <th>รายการรายรับ</th>
+              <th>รวมรายรับ (บาท)</th>
+              <th>รายการรายจ่าย</th>
+              <th>รวมรายจ่าย (บาท)</th>
+              <th>Free Cash Flow (บาท)</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <div class="result-box result-highlight">
+        <h3 class="result-title">Free Cash Flow รวมทั้งหมด: <span id="fcf-total-all" class="result-value">0.00</span> บาท</h3>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

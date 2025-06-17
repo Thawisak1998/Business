@@ -1,0 +1,482 @@
+/* สีหลัก */
+:root {
+  --primary-color: #3498db;
+  --primary-dark: #2980b9;
+  --secondary-color: #2ecc71;
+  --secondary-dark: #27ae60;
+  --danger-color: #e74c3c;
+  --danger-dark: #c0392b;
+  --warning-color: #f39c12;
+  --warning-dark: #e67e22;
+  --light-color: #ecf0f1;
+  --dark-color: #2c3e50;
+  --gray-color: #95a5a6;
+}
+
+/* การ์ดสำหรับแต่ละส่วน */
+.card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  margin-bottom: 30px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  color: var(--dark-color);
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+/* ปุ่ม */
+.btn {
+  padding: 12px 24px;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  font-size: 16px;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+}
+
+.btn-secondary {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: var(--secondary-dark);
+}
+
+.btn-danger {
+  background-color: var(--danger-color);
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: var(--danger-dark);
+}
+
+/* ตาราง */
+.table-responsive {
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  font-size: 15px;
+}
+
+.table th {
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: 600;
+  padding: 12px 15px;
+  text-align: left;
+}
+
+.table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* ผลลัพธ์ */
+.result-box {
+  background-color: #f8f9fa;
+  border-left: 4px solid var(--primary-color);
+  border-radius: 6px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.result-highlight {
+  background-color: #e8f8f5;
+  border-left: 4px solid var(--secondary-color);
+}
+
+.result-title {
+  color: var(--dark-color);
+  margin-top: 0;
+  font-size: 1.2rem;
+}
+
+.result-value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+/* การ์ดสำหรับแต่ละเครื่องมือ */
+.tool-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  margin-bottom: 30px;
+  border-top: 4px solid var(--primary-color);
+}
+
+.tool-card h2 {
+  color: var(--dark-color);
+  margin-top: 0;
+}
+
+/* เมนูนำทาง */
+.nav-tabs {
+  display: flex;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #eee;
+}
+
+.nav-tabs a {
+  padding: 12px 24px;
+  text-decoration: none;
+  color: #555;
+  font-weight: 600;
+  border-radius: 4px 4px 0 0;
+  margin-right: 5px;
+  transition: all 0.3s ease;
+  background-color: #f8f9fa;
+}
+
+.nav-tabs a:hover {
+  background-color: #e9ecef;
+  color: var(--primary-color);
+}
+
+.nav-tabs a.active {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* ฟอร์ม */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #444;
+}
+
+.form-control {
+  width: 100%;
+  max-width: 400px;
+  padding: 12px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+  
+  .card {
+    padding: 15px;
+  }
+  
+  .table th, 
+  .table td {
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+  
+  .nav-tabs {
+    flex-direction: column;
+  }
+  
+  .nav-tabs a {
+    margin-bottom: 5px;
+    border-radius: 4px;
+  }
+}
+
+/* เพิ่มสไตล์สำหรับหน้าอัปโหลด */
+.form-control[type="file"] {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+}
+
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.alert-danger {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+
+.result-item {
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.result-item:last-child {
+  border-bottom: none;
+}
+
+.form-text {
+  display: block;
+  margin-top: 5px;
+  color: #6c757d;
+  font-size: 0.875em;
+}
+
+#use-data-btn {
+  margin-top: 20px;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.note {
+  color: #666;
+  font-size: 0.9em;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
+/* เพิ่มในส่วนท้ายของไฟล์ style.css */
+
+/* ปุ่มในตาราง */
+.btn-danger {
+  padding: 6px 12px;
+  font-size: 14px;
+}
+
+/* ตาราง DCF แบบใหม่ */
+#dcf-new-table th {
+  white-space: nowrap;
+}
+
+#dcf-new-table td {
+  vertical-align: middle;
+}
+
+/* ปุ่มกลุ่ม */
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* การ์ดผลลัพธ์ */
+.result-highlight {
+  background-color: #e8f8f5;
+  border-left: 4px solid var(--secondary-color);
+  margin-top: 30px;
+}
+
+.result-title {
+  color: var(--dark-color);
+  margin-top: 0;
+  font-size: 1.2rem;
+}
+
+.result-value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+/* Responsive สำหรับตาราง */
+@media (max-width: 768px) {
+  #dcf-new-table {
+    font-size: 14px;
+  }
+  
+  #dcf-new-table th, 
+  #dcf-new-table td {
+    padding: 8px;
+  }
+  /* เพิ่มในไฟล์ style.css */
+.number-format {
+  font-family: 'Tahoma', 'Arial', sans-serif;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* ใช้กับเซลล์ตารางที่มีตัวเลข */
+.table td.number-format {
+  padding-right: 15px;
+}
+/* Add this to style.css */
+input[type="number"] {
+  text-align: right;
+}
+
+.number-format {
+  font-family: 'Tahoma', 'Arial', sans-serif;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* Use this class for table cells with numbers */
+.table td.number-format {
+  padding-right: 15px;
+}
+/* เพิ่มใน style.css */
+.sheet-tabs {
+  display: flex;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.sheet-tab {
+  padding: 8px 16px;
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  border-bottom: none;
+  margin-right: 5px;
+  cursor: pointer;
+  border-radius: 4px 4px 0 0;
+}
+
+.sheet-tab.active {
+  background: #3498db;
+  color: white;
+  border-color: #2980b9;
+}
+
+   /* เพิ่มสไตล์สำหรับ Business Valuation */
+    .valuation-analysis {
+      border: 1px solid #ddd;
+      padding: 15px;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+    .valuation-section {
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #eee;
+    }
+    .valuation-section:last-child {
+      border-bottom: none;
+    }
+    .valuation-section h5 {
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+    .preview-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    .preview-table th, .preview-table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    .preview-table th {
+      background-color: #f2f2f2;
+    }
+    /* เพิ่มใน style.css */
+.valuation-analysis {
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 5px;
+  margin-top: 20px;
+  background-color: #f9f9f9;
+}
+
+.valuation-section {
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.valuation-section:last-child {
+  border-bottom: none;
+}
+
+.valuation-section h5 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.valuation-section h6 {
+  color: #34495e;
+  margin: 10px 0 5px 0;
+  font-size: 1rem;
+}
+
+.valuation-section ul {
+  margin: 5px 0;
+  padding-left: 20px;
+}
+
+.valuation-section li {
+  margin-bottom: 5px;
+}
+
+.preview-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.preview-table th, .preview-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.preview-table th {
+  background-color: #f2f2f2;
+}
+}

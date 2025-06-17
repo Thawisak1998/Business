@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>เครื่องมือคำนวณทางการเงิน</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <nav class="nav-tabs">
+      <a href="index.html" class="active">เครื่องมือคำนวณ</a>
+      <a href="income.html">วิเคราะห์รายรับ-รายจ่าย</a>
+      <a href="dcf-new.html">DCF แบบใหม่</a>
+      <a href="upload.html">อัปโหลดไฟล์</a>
+      <a href="guide.html">คู่มือการใช้งาน</a>
+    </nav>
+
+    <h1 class="page-title">เครื่องมือประเมินโครงการทางการเงิน</h1>
+
+    <!-- CAPM Section -->
+    <div class="tool-card" id="capm-section">
+      <h2>คำนวณ CAPM</h2>
+      <div class="form-group">
+        <label for="rf" class="form-label">อัตราปลอดความเสี่ยง (Rf) (%)</label>
+        <input type="number" id="rf" class="form-control" step="0.01" value="2.12">
+      </div>
+      <div class="form-group">
+        <label for="beta" class="form-label">Beta (β)</label>
+        <input type="number" id="beta" class="form-control" step="0.01" value="0.57">
+      </div>
+      <div class="form-group">
+        <label for="rm" class="form-label">ผลตอบแทนตลาด (Rm) (%)</label>
+        <input type="number" id="rm" class="form-control" step="0.01" value="8.58">
+      </div>
+      <button id="calculate-capm" class="btn btn-primary">คำนวณ CAPM</button>
+      <div class="result-box">
+        <h3 class="result-title">CAPM: <span id="capm-result" class="result-value">0.00</span>%</h3>
+      </div>
+    </div>
+
+    <!-- WACC Section -->
+<div class="tool-card" id="wacc-section">
+  <h2>คำนวณ WACC</h2>
+  <div class="form-group">
+    <label for="total-value" class="form-label">มูลค่าทุนทั้งหมด (V) บาท</label>
+    <input type="number" id="total-value" class="form-control" value="0">
+  </div>
+  <div class="form-group">
+    <label for="equity" class="form-label">ทุน (E) บาท</label>
+    <input type="number" id="equity" class="form-control" value="0">
+  </div>
+  <div class="form-group">
+    <label for="debt" class="form-label">หนี้สิน (D) บาท</label>
+    <input type="number" id="debt" class="form-control" value="0">
+  </div>
+  <div class="form-group">
+    <label for="rd" class="form-label">ต้นทุนหนี้สิน (Rd) %</label>
+    <input type="number" id="rd" class="form-control" value="6.75">
+  </div>
+  <div class="form-group">
+    <label for="tax-rate" class="form-label">อัตราภาษี (Tc) %</label>
+    <input type="number" id="tax-rate" class="form-control" value="25">
+  </div>
+  <button id="calculate-wacc" class="btn btn-primary">คำนวณ WACC</button>
+  <div class="result-box">
+    <h3 class="result-title">WACC: <span id="wacc-result" class="result-value">0.00</span>%</h3>
+  </div>
+</div>
+
+    <!-- DCF Section -->
+    <div class="tool-card" id="dcf-section">
+      <h2>คำนวณ DCF</h2>
+      <div class="form-group">
+        <label for="initial-investment" class="form-label">เงินลงทุนเริ่มต้น (บาท)</label>
+        <input type="number" id="initial-investment" class="form-control" value="20000">
+      </div>
+      <div class="form-group">
+        <label for="base-cash-flow" class="form-label">กระแสเงินสดปีฐาน (บาท)</label>
+        <input type="number" id="base-cash-flow" class="form-control" value="4561.60">
+      </div>
+
+      <h3>ช่วงปีการเติบโต</h3>
+      <div class="table-responsive">
+        <table class="table" id="growth-rate-table">
+          <thead>
+            <tr>
+              <th>จากปี</th>
+              <th>ถึงปี</th>
+              <th>อัตราเติบโต (%)</th>
+              <th>ลบ</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="button-group">
+        <button id="add-growth-rate" class="btn btn-secondary">เพิ่มช่วงปี</button>
+        <button id="auto-arrange" class="btn btn-secondary">จัดเรียงปี</button>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table" id="dcf-table">
+          <thead>
+            <tr>
+              <th>ปี</th>
+              <th>กระแสเงินสด (บาท)</th>
+              <th>Discount Rate (%)</th>
+              <th>Present Value (บาท)</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <button id="calculate-dcf" class="btn btn-primary">คำนวณ NPV</button>
+      <div class="result-box result-highlight">
+        <h3 class="result-title">NPV: <span id="dcf-result" class="result-value">0.00</span> บาท</h3>
+        <h3 class="result-title">IRR: <span id="irr-result" class="result-value">0.00</span>%</h3>
+        <h3 class="result-title">PI: <span id="pi-result" class="result-value">0.00</span></h3>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
