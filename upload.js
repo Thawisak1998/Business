@@ -69,90 +69,88 @@ document.addEventListener('DOMContentLoaded', function() {
         break;
       
       case 'business-valuation':
-  // สร้างข้อมูลสำหรับ Business Valuation ตามไฟล์ตัวอย่างใหม่
-  wb = XLSX.utils.book_new();
-  
-  // Sheet 1: income_statement
-  const incomeStatementData = [
-    ["ผลตอบแทน", "", "", "", "", ""],
-    ["ผลิตภัณฑ์ (1) ที่สามารถผลิตได้ต่อปี", 1000, 1200, 1400, 1600, 1800],
-    ["ราคาต่อหน่วย (1)", 50, 55, 60, 65, 70],
-    ["ผลิตภัณฑ์ (2) ที่สามารถผลิตได้ต่อปี", 500, 600, 700, 800, 900],
-    ["ราคาต่อหน่วย (2)", 80, 85, 90, 95, 100],
-    ["", "", "", "", "", ""],
-    ["ต้นทุน (ลงทุน)", "", "", "", "", ""],
-    ["การซื้อเทคโนโลยี", 50000, 0, 0, 0, 0],
-    ["ค่าวัตถุดิบ", 20000, 22000, 24000, 26000, 28000],
-    ["การปรับปรุงโรงงานเดิม", 30000, 0, 0, 0, 0],
-    ["ยานพาหนะและขนส่ง", 10000, 0, 0, 0, 0],
-    ["เครื่องจักร", 50000, 0, 0, 0, 0],
-    ["เครื่องมือ", 10000, 0, 0, 0, 0],
-    ["แบบต่างๆ", 5000, 0, 0, 0, 0],
-    ["สิ่งปลูกสร้างด้านการผลิต", 100000, 0, 0, 0, 0],
-    ["สิ่งปลูกสร้างที่ไม่เกี่ยวกับการผลิต", 50000, 0, 0, 0, 0],
-    ["เฟอร์นิเจอร์และอุปกรณ์สำนักงาน", 20000, 0, 0, 0, 0],
-    ["อื่น ๆ", 10000, 0, 0, 0, 0]
-  ];
-  const wsIncomeStatement = XLSX.utils.aoa_to_sheet(incomeStatementData);
-  XLSX.utils.book_append_sheet(wb, wsIncomeStatement, "income_statement");
-  
-  // Sheet 2: งบลงทุน
-  const investmentSheetData = [
-    ["เงินลงทุน", "ปีที่ 1", "ปีที่ 2", "ปีที่ 3", "ปีที่ 4", "ปีที่ 5"],
-    ["", "ปีที่ 1", "ปีที่ 2", "ปีที่ 3", "ปีที่ 4", "ปีที่ 5"],
-    ["ค่าออกแบบปรับปรุงอาคาร", 100000, 0, 0, 0, 0],
-    ["ค่าปรับปรุงอาคาร", 50000, 0, 0, 0, 0],
-    ["ระบบ/ลิขสิทธิ์", 20000, 0, 0, 0, 0],
-    ["", "", "", "", "", ""],
-    ["รวมเงินลงทุน", "=SUM(B3:B5)", "=SUM(C3:C5)", "=SUM(D3:D5)", "=SUM(E3:E5)", "=SUM(F3:F5)"]
-  ];
-  const wsInvestmentSheet = XLSX.utils.aoa_to_sheet(investmentSheetData);
-  XLSX.utils.book_append_sheet(wb, wsInvestmentSheet, "งบลงทุน");
-  
-  // Sheet 3: งบบุคลากร
-  const personnelData = [
-    ["รายจ่ายต่อเดือน", "", "", "", "", ""],
-    ["", "", "", "", "", ""],
-    ["", "ปีที่ 1", "ปีที่ 2", "ปีที่ 3", "ปีที่ 4", "ปีที่ 5"],
-    ["กรรมการผู้จัดการ", 50000, 52000, 54000, 56000, 58000],
-    ["ผู้จัดการฝ่ายการตลาด", 40000, 42000, 44000, 46000, 48000],
-    ["เจ้าหน้าที่การตลาด", 30000, 32000, 34000, 36000, 38000],
-    ["ผู้จัดการฝ่ายการผลิต", 45000, 47000, 49000, 51000, 53000],
-    ["วิศวกรฝ่ายผลิต", 35000, 37000, 39000, 41000, 43000],
-    ["แรงงานผลิต", 20000, 22000, 24000, 26000, 28000],
-    ["พนักงานสำนักงาน บัญชี การเงิน", 25000, 27000, 29000, 31000, 33000],
-    ["แม่บ้าน/รปภ.", 15000, 16000, 17000, 18000, 19000],
-    ["", "", "", "", "", ""],
-    ["รวมค่าใช้จ่ายบุคลากรต่อปี", "=SUM(C4:C11)*12", "=SUM(D4:D11)*12", "=SUM(E4:E11)*12", "=SUM(F4:F11)*12", "=SUM(G4:G11)*12"]
-  ];
-  const wsPersonnel = XLSX.utils.aoa_to_sheet(personnelData);
-  XLSX.utils.book_append_sheet(wb, wsPersonnel, "งบบุคลากร");
-  
-  // Sheet 4: ค่าใช้จ่ายในการบริหาร
-  const adminCostData = [
-    ["ค่าใช้จ่ายในการบริหาร", "", "", "", "", ""],
-    ["", "ปีที่ 1", "ปีที่ 2", "ปีที่ 3", "ปีที่ 4", "ปีที่ 5"],
-    ["ค่าเช่าตึก", 50000, 55000, 60000, 65000, 70000],
-    ["ค่าใช้จ่ายบุคลากร", "=งบบุคลากร!C12", "=งบบุคลากร!D12", "=งบบุคลากร!E12", "=งบบุคลากร!F12", "=งบบุคลากร!G12"],
-    ["ค่าสาธารณูปโภค", 20000, 22000, 24000, 26000, 28000],
-    ["ค่าโทรศัพท์", 5000, 5500, 6000, 6500, 7000],
-    ["ค่าใช้จ่าย รปภ", 10000, 11000, 12000, 13000, 14000],
-    ["ค่าวัสดุสำนักงาน", 5000, 5500, 6000, 6500, 7000],
-    ["ค่าซ่อมบำรุง", 10000, 11000, 12000, 13000, 14000],
-    ["ค่าใช้จ่ายอื่นๆ", 5000, 5500, 6000, 6500, 7000],
-    ["ค่าจ้างเหมาบริการรถยนต์", 15000, 16000, 17000, 18000, 19000],
-    ["ค่าน้ำมันรถยนต์", 10000, 11000, 12000, 13000, 14000],
-    ["ค่าอบรม", 20000, 22000, 24000, 26000, 28000],
-    ["", "", "", "", "", ""],
-    ["ค่าเสื่อมราคา", 0, "=งบลงทุน!C7", "=งบลงทุน!D7", "=งบลงทุน!E7", "=งบลงทุน!F7"],
-    ["รวมค่าใช้จ่าย", "=SUM(B3:B15)", "=SUM(C3:C15)", "=SUM(D3:D15)", "=SUM(E3:E15)", "=SUM(F3:F15)"]
-  ];
-  const wsAdminCost = XLSX.utils.aoa_to_sheet(adminCostData);
-  XLSX.utils.book_append_sheet(wb, wsAdminCost, "ค่าใช้จ่ายในการบริหาร");
-  
-  fileName = 'business-valuation-template.xlsx';
-  break;
-}
+        wb = XLSX.utils.book_new();
+        
+        // Sheet 1: income_statement
+        const incomeStatementData = [
+          ["ผลตอบแทน", "", "", "", "", ""],
+          ["ผลิตภัณฑ์ (1) ที่สามารถผลิตได้ต่อปี", 1000, 1200, 1400, 1600, 1800],
+          ["ราคาต่อหน่วย (1)", 50, 55, 60, 65, 70],
+          ["ผลิตภัณฑ์ (2) ที่สามารถผลิตได้ต่อปี", 500, 600, 700, 800, 900],
+          ["ราคาต่อหน่วย (2)", 80, 85, 90, 95, 100],
+          ["", "", "", "", "", ""],
+          ["ต้นทุน (ลงทุน)", "", "", "", "", ""],
+          ["การซื้อเทคโนโลยี", 50000, 0, 0, 0, 0],
+          ["ค่าวัตถุดิบ", 20000, 22000, 24000, 26000, 28000],
+          ["การปรับปรุงโรงงานเดิม", 30000, 0, 0, 0, 0],
+          ["ยานพาหนะและขนส่ง", 10000, 0, 0, 0, 0],
+          ["เครื่องจักร", 50000, 0, 0, 0, 0],
+          ["เครื่องมือ", 10000, 0, 0, 0, 0],
+          ["แบบต่างๆ", 5000, 0, 0, 0, 0],
+          ["สิ่งปลูกสร้างด้านการผลิต", 100000, 0, 0, 0, 0],
+          ["สิ่งปลูกสร้างที่ไม่เกี่ยวกับการผลิต", 50000, 0, 0, 0, 0],
+          ["เฟอร์นิเจอร์และอุปกรณ์สำนักงาน", 20000, 0, 0, 0, 0],
+          ["อื่น ๆ", 10000, 0, 0, 0, 0]
+        ];
+        const wsIncomeStatement = XLSX.utils.aoa_to_sheet(incomeStatementData);
+        XLSX.utils.book_append_sheet(wb, wsIncomeStatement, "income_statement");
+        
+        // Sheet 2: งบลงทุน
+        const investmentSheetData = [
+          ["เงินลงทุน", "ปีที่ 1", "ปีที่ 2", "ปีที่ 3", "ปีที่ 4", "ปีที่ 5"],
+          ["ค่าออกแบบปรับปรุงอาคาร", 100000, 0, 0, 0, 0],
+          ["ค่าปรับปรุงอาคาร", 50000, 0, 0, 0, 0],
+          ["ระบบ/ลิขสิทธิ์", 20000, 0, 0, 0, 0],
+          ["", "", "", "", "", ""],
+          ["รวมเงินลงทุน", "=SUM(B2:B5)", "=SUM(C2:C5)", "=SUM(D2:D5)", "=SUM(E2:E5)", "=SUM(F2:F5)"]
+        ];
+        const wsInvestmentSheet = XLSX.utils.aoa_to_sheet(investmentSheetData);
+        XLSX.utils.book_append_sheet(wb, wsInvestmentSheet, "งบลงทุน");
+        
+        // Sheet 3: งบบุคลากร
+        const personnelData = [
+          ["รายจ่ายต่อเดือน", "", "", "", "", ""],
+          ["", "", "", "", "", ""],
+          ["", "ปีที่ 1", "ปีที่ 2", "ปีที่ 3", "ปีที่ 4", "ปีที่ 5"],
+          ["กรรมการผู้จัดการ", 50000, 52000, 54000, 56000, 58000],
+          ["ผู้จัดการฝ่ายการตลาด", 40000, 42000, 44000, 46000, 48000],
+          ["เจ้าหน้าที่การตลาด", 30000, 32000, 34000, 36000, 38000],
+          ["ผู้จัดการฝ่ายการผลิต", 45000, 47000, 49000, 51000, 53000],
+          ["วิศวกรฝ่ายผลิต", 35000, 37000, 39000, 41000, 43000],
+          ["แรงงานผลิต", 20000, 22000, 24000, 26000, 28000],
+          ["พนักงานสำนักงาน บัญชี การเงิน", 25000, 27000, 29000, 31000, 33000],
+          ["แม่บ้าน/รปภ.", 15000, 16000, 17000, 18000, 19000],
+          ["", "", "", "", "", ""],
+          ["รวมค่าใช้จ่ายบุคลากรต่อปี", "=SUM(B4:B11)*12", "=SUM(C4:C11)*12", "=SUM(D4:D11)*12", "=SUM(E4:E11)*12", "=SUM(F4:F11)*12"]
+        ];
+        const wsPersonnel = XLSX.utils.aoa_to_sheet(personnelData);
+        XLSX.utils.book_append_sheet(wb, wsPersonnel, "งบบุคลากร");
+        
+        // Sheet 4: ค่าใช้จ่ายในการบริหาร
+        const adminCostData = [
+          ["ค่าใช้จ่ายในการบริหาร", "", "", "", "", ""],
+          ["", "ปีที่ 1", "ปีที่ 2", "ปีที่ 3", "ปีที่ 4", "ปีที่ 5"],
+          ["ค่าเช่าตึก", 50000, 55000, 60000, 65000, 70000],
+          ["ค่าใช้จ่ายบุคลากร", "=งบบุคลากร!B13", "=งบบุคลากร!C13", "=งบบุคลากร!D13", "=งบบุคลากร!E13", "=งบบุคลากร!F13"],
+          ["ค่าสาธารณูปโภค", 20000, 22000, 24000, 26000, 28000],
+          ["ค่าโทรศัพท์", 5000, 5500, 6000, 6500, 7000],
+          ["ค่าใช้จ่าย รปภ", 10000, 11000, 12000, 13000, 14000],
+          ["ค่าวัสดุสำนักงาน", 5000, 5500, 6000, 6500, 7000],
+          ["ค่าซ่อมบำรุง", 10000, 11000, 12000, 13000, 14000],
+          ["ค่าใช้จ่ายอื่นๆ", 5000, 5500, 6000, 6500, 7000],
+          ["ค่าจ้างเหมาบริการรถยนต์", 15000, 16000, 17000, 18000, 19000],
+          ["ค่าน้ำมันรถยนต์", 10000, 11000, 12000, 13000, 14000],
+          ["ค่าอบรม", 20000, 22000, 24000, 26000, 28000],
+          ["", "", "", "", "", ""],
+          ["ค่าเสื่อมราคา", "=งบลงทุน!B6", "=งบลงทุน!C6", "=งบลงทุน!D6", "=งบลงทุน!E6", "=งบลงทุน!F6"],
+          ["รวมค่าใช้จ่าย", "=SUM(B3:B15)", "=SUM(C3:C15)", "=SUM(D3:D15)", "=SUM(E3:E15)", "=SUM(F3:F15)"]
+        ];
+        const wsAdminCost = XLSX.utils.aoa_to_sheet(adminCostData);
+        XLSX.utils.book_append_sheet(wb, wsAdminCost, "ค่าใช้จ่ายในการบริหาร");
+        
+        fileName = 'business-valuation-template.xlsx';
+        break;
+    }
 
     // สร้างไฟล์ Excel
     XLSX.writeFile(wb, fileName);
@@ -263,11 +261,10 @@ document.addEventListener('DOMContentLoaded', function() {
           table.appendChild(thead);
         }
         
-        // สร้างข้อมูล (แสดงแค่ 5 แถวแรก)
+        // สร้างข้อมูล (แสดงทั้งหมด)
         const tbody = document.createElement('tbody');
-        const rowsToShow = Math.min(sheet.data.length, 6); // แสดง header + 5 แถว
         
-        for (let i = 1; i < rowsToShow; i++) {
+        for (let i = 1; i < sheet.data.length; i++) {
           const row = document.createElement('tr');
           
           sheet.data[i].forEach(cell => {
@@ -288,9 +285,8 @@ document.addEventListener('DOMContentLoaded', function() {
       previewHeaders.innerHTML = parsedData.headers.map(h => `<th>${h}</th>`).join('');
       previewData.innerHTML = '';
 
-      // แสดงเพียง 5 แถวแรก
-      const rowsToShow = Math.min(parsedData.data.length, 5);
-      for (let i = 0; i < rowsToShow; i++) {
+      // แสดงทั้งหมด
+      for (let i = 0; i < parsedData.data.length; i++) {
         const row = document.createElement('tr');
         row.innerHTML = parsedData.headers.map(h => `<td>${parsedData.data[i][h] || '-'}</td>`).join('');
         previewData.appendChild(row);
@@ -551,93 +547,268 @@ document.addEventListener('DOMContentLoaded', function() {
     return result;
   }
 
-// แก้ไขฟังก์ชัน analyzeBusinessValuation ใน upload.js
-function analyzeBusinessValuation(data) {
-  // หา sheet ที่ต้องการ
-  let incomeStatement, investmentSheet, personnelSheet, adminCostSheet;
-  
-  if (Array.isArray(data)) {
-    incomeStatement = data.find(sheet => 
-      sheet.name.toLowerCase().includes('income') || 
-      sheet.name.includes('ผลตอบแทน') ||
-      sheet.name.includes('statement')
-    );
-    investmentSheet = data.find(sheet => 
-      sheet.name.includes('ลงทุน') || 
-      sheet.name.includes('เงินลงทุน') ||
-      sheet.name.toLowerCase().includes('investment')
-    );
-    personnelSheet = data.find(sheet => 
-      sheet.name.includes('บุคลากร') || 
-      sheet.name.includes('พนักงาน') ||
-      sheet.name.toLowerCase().includes('personnel')
-    );
-    adminCostSheet = data.find(sheet => 
-      sheet.name.includes('บริหาร') || 
-      sheet.name.includes('ค่าใช้จ่าย') ||
-      sheet.name.toLowerCase().includes('admin')
-    );
-  } else {
-    // กรณีไม่ใช่ Excel
-    incomeStatement = data;
-  }
-  
-  // สร้างผลลัพธ์ HTML
-  let resultHTML = `
-    <div class="valuation-analysis">
-      <h4>ผลการวิเคราะห์ธุรกิจ</h4>
-  `;
-  
-  // ข้อมูลรายได้
-  resultHTML += `<div class="valuation-section"><h5>ข้อมูลรายได้</h5>`;
-  
-  if (incomeStatement) {
-    const incomeData = Array.isArray(incomeStatement) ? incomeStatement.data : incomeStatement;
+  // วิเคราะห์การประเมินธุรกิจ
+  function analyzeBusinessValuation(data) {
+    // หา sheet ที่ต้องการ
+    let incomeStatement, investmentSheet, personnelSheet, adminCostSheet;
     
-    // หาข้อมูลผลิตภัณฑ์
-    const products = [];
-    for (let i = 0; i < incomeData.length; i++) {
-      const row = incomeData[i];
-      if (row && row[0] && typeof row[0] === 'string' && 
-          row[0].toString().includes('ผลิตภัณฑ์') && 
-          row[0].toString().includes('ที่สามารถผลิตได้ต่อปี')) {
-        const priceRowIndex = findPriceRow(incomeData, i);
-        const priceRow = priceRowIndex !== -1 ? incomeData[priceRowIndex] : null;
-        const price = priceRow && priceRow[1] ? parseFloat(priceRow[1]) : 0;
-        
-        products.push({
-          name: row[0],
-          year1: row[1] ? parseFloat(row[1]) : 0,
-          priceRow: priceRowIndex,
-          price: price
-        });
-      }
-    }
-    
-    // แสดงข้อมูลผลิตภัณฑ์
-    if (products.length > 0) {
-      products.forEach(product => {
-        resultHTML += `
-          <p>${product.name}: ${product.year1.toLocaleString('th-TH')} หน่วย (ราคาต่อหน่วย: ${product.price.toLocaleString('th-TH')} บาท)</p>
-        `;
-      });
+    if (Array.isArray(data)) {
+      incomeStatement = data.find(sheet => 
+        sheet.name.toLowerCase().includes('income') || 
+        sheet.name.includes('ผลตอบแทน') ||
+        sheet.name.includes('statement')
+      );
+      investmentSheet = data.find(sheet => 
+        sheet.name.includes('ลงทุน') || 
+        sheet.name.includes('เงินลงทุน') ||
+        sheet.name.toLowerCase().includes('investment')
+      );
+      personnelSheet = data.find(sheet => 
+        sheet.name.includes('บุคลากร') || 
+        sheet.name.includes('พนักงาน') ||
+        sheet.name.toLowerCase().includes('personnel')
+      );
+      adminCostSheet = data.find(sheet => 
+        sheet.name.includes('บริหาร') || 
+        sheet.name.includes('ค่าใช้จ่าย') ||
+        sheet.name.toLowerCase().includes('admin')
+      );
     } else {
-      resultHTML += `<p>ไม่พบข้อมูลผลิตภัณฑ์</p>`;
+      // กรณีไม่ใช่ Excel
+      incomeStatement = data;
     }
     
-    // หาข้อมูลต้นทุน
-    const costItems = [];
-    const costStart = incomeData.findIndex(row => 
-      row && row[0] && typeof row[0] === 'string' && 
-      row[0].toString().includes('ต้นทุน')
-    );
+    // เก็บผลลัพธ์การคำนวณ
+    const calculations = {
+      totalRevenue: 0,
+      totalCost: 0,
+      totalInvestment: 0,
+      totalPersonnelCost: 0,
+      totalAdminCost: 0,
+      netProfit: 0
+    };
     
-    if (costStart > -1) {
-      for (let i = costStart + 1; i < incomeData.length; i++) {
+    // สร้างผลลัพธ์ HTML
+    let resultHTML = `
+      <div class="valuation-analysis">
+        <h3>ผลการวิเคราะห์ธุรกิจ</h3>
+    `;
+    
+    // 1. ข้อมูลรายได้
+    resultHTML += `<div class="valuation-section"><h4>ข้อมูลรายได้</h4>`;
+    
+    if (incomeStatement) {
+      const incomeData = Array.isArray(incomeStatement) ? incomeStatement.data : incomeStatement;
+      
+      // หาข้อมูลผลิตภัณฑ์
+      const products = [];
+      for (let i = 0; i < incomeData.length; i++) {
         const row = incomeData[i];
         if (row && row[0] && typeof row[0] === 'string' && 
+            row[0].toString().includes('ผลิตภัณฑ์') && 
+            row[0].toString().includes('ที่สามารถผลิตได้ต่อปี')) {
+          const priceRowIndex = findPriceRow(incomeData, i);
+          const priceRow = priceRowIndex !== -1 ? incomeData[priceRowIndex] : null;
+          const price = priceRow && priceRow[1] ? parseFloat(priceRow[1]) : 0;
+          
+          products.push({
+            name: row[0],
+            year1: row[1] ? parseFloat(row[1]) : 0,
+            priceRow: priceRowIndex,
+            price: price
+          });
+        }
+      }
+      
+      // คำนวณรายได้รวม
+      if (products.length > 0) {
+        resultHTML += `<h5>รายได้จากการขายผลิตภัณฑ์:</h5><ul>`;
+        
+        products.forEach(product => {
+          const revenue = product.year1 * product.price;
+          calculations.totalRevenue += revenue;
+          
+          resultHTML += `
+            <li>
+              ${product.name}: 
+              ${product.year1.toLocaleString('th-TH')} หน่วย × 
+              ${product.price.toLocaleString('th-TH')} บาท = 
+              <strong>${revenue.toLocaleString('th-TH')} บาท/ปี</strong>
+            </li>
+          `;
+        });
+        
+        resultHTML += `</ul>`;
+        resultHTML += `<p><strong>รายได้รวม: ${calculations.totalRevenue.toLocaleString('th-TH')} บาท/ปี</strong></p>`;
+      } else {
+        resultHTML += `<p>ไม่พบข้อมูลผลิตภัณฑ์</p>`;
+      }
+      
+      // หาข้อมูลต้นทุน
+      const costItems = [];
+      const costStart = incomeData.findIndex(row => 
+        row && row[0] && typeof row[0] === 'string' && 
+        row[0].toString().includes('ต้นทุน')
+      );
+      
+      if (costStart > -1) {
+        for (let i = costStart + 1; i < incomeData.length; i++) {
+          const row = incomeData[i];
+          if (row && row[0] && typeof row[0] === 'string' && 
+              row[0].toString().trim() && 
+              !row[0].toString().includes('ค่าใช้จ่าย')) {
+            const amount = row[1] ? parseFloat(row[1]) : 0;
+            if (amount > 0) {
+              costItems.push({
+                name: row[0],
+                amount: amount
+              });
+              calculations.totalCost += amount;
+            }
+          } else {
+            break;
+          }
+        }
+      }
+      
+      if (costItems.length > 0) {
+        resultHTML += `<h5>ต้นทุนการผลิต:</h5><ul>`;
+        costItems.forEach(item => {
+          resultHTML += `<li>${item.name}: ${item.amount.toLocaleString('th-TH')} บาท</li>`;
+        });
+        resultHTML += `</ul>`;
+        resultHTML += `<p><strong>ต้นทุนการผลิตรวม: ${calculations.totalCost.toLocaleString('th-TH')} บาท</strong></p>`;
+      } else {
+        resultHTML += `<p>ไม่พบข้อมูลต้นทุนการผลิต</p>`;
+      }
+    } else {
+      resultHTML += `<p>ไม่พบข้อมูลรายได้</p>`;
+    }
+    
+    resultHTML += `</div>`;
+    
+    // 2. ข้อมูลการลงทุน
+    resultHTML += `<div class="valuation-section"><h4>ข้อมูลการลงทุน</h4>`;
+    
+    if (investmentSheet) {
+      const investmentData = investmentSheet.data;
+      
+      // หาแถวที่มีผลรวม
+      const totalInvestmentRow = investmentData.find(row => 
+        row && row[0] && typeof row[0] === 'string' && 
+        row[0].toString().includes('รวมเงินลงทุน')
+      );
+      
+      if (totalInvestmentRow && totalInvestmentRow.length >= 2) {
+        calculations.totalInvestment = parseFloat(totalInvestmentRow[1]) || 0;
+        resultHTML += `<p><strong>รวมเงินลงทุนปีที่ 1: ${calculations.totalInvestment.toLocaleString('th-TH')} บาท</strong></p>`;
+      }
+      
+      // แสดงรายการลงทุน
+      const investmentItems = [];
+      for (let i = 1; i < investmentData.length; i++) {
+        const row = investmentData[i];
+        if (row && row[0] && typeof row[0] === 'string' && 
             row[0].toString().trim() && 
-            !row[0].toString().includes('ค่าใช้จ่าย')) {
+            !row[0].toString().includes('รวม') && 
+            !row[0].toString().includes('ค่าเสื่อม')) {
+          const amount = row[1] ? parseFloat(row[1]) : 0;
+          if (amount > 0) {
+            investmentItems.push({
+              name: row[0],
+              amount: amount
+            });
+          }
+        }
+      }
+      
+      if (investmentItems.length > 0) {
+        resultHTML += `<h5>รายการลงทุนหลัก:</h5><ul>`;
+        investmentItems.forEach(item => {
+          resultHTML += `<li>${item.name}: ${item.amount.toLocaleString('th-TH')} บาท</li>`;
+        });
+        resultHTML += `</ul>`;
+      } else {
+        resultHTML += `<p>ไม่พบรายการลงทุน</p>`;
+      }
+    } else {
+      resultHTML += `<p>ไม่พบข้อมูลการลงทุน</p>`;
+    }
+    
+    resultHTML += `</div>`;
+    
+    // 3. ข้อมูลบุคลากร
+    resultHTML += `<div class="valuation-section"><h4>ข้อมูลบุคลากร</h4>`;
+    
+    if (personnelSheet) {
+      const personnelData = personnelSheet.data;
+      
+      const totalPersonnelRow = personnelData.find(row => 
+        row && row[0] && typeof row[0] === 'string' && 
+        row[0].toString().includes('รวมค่าใช้จ่ายบุคลากร')
+      );
+      
+      if (totalPersonnelRow && totalPersonnelRow.length >= 2) {
+        calculations.totalPersonnelCost = parseFloat(totalPersonnelRow[1]) || 0;
+        resultHTML += `<p><strong>ค่าใช้จ่ายบุคลากรต่อปี: ${calculations.totalPersonnelCost.toLocaleString('th-TH')} บาท</strong></p>`;
+      }
+      
+      // แสดงรายการบุคลากร
+      const personnelItems = [];
+      for (let i = 3; i < personnelData.length; i++) {
+        const row = personnelData[i];
+        if (row && row[0] && typeof row[0] === 'string' && 
+            row[0].toString().trim() && 
+            !row[0].toString().includes('รวม')) {
+          const salary = row[1] ? parseFloat(row[1]) : 0;
+          if (salary > 0) {
+            personnelItems.push({
+              name: row[0],
+              salary: salary
+            });
+          }
+        }
+      }
+      
+      if (personnelItems.length > 0) {
+        resultHTML += `<h5>รายการบุคลากรหลัก:</h5><ul>`;
+        personnelItems.forEach(item => {
+          resultHTML += `<li>${item.name}: ${item.salary.toLocaleString('th-TH')} บาท/เดือน</li>`;
+        });
+        resultHTML += `</ul>`;
+      } else {
+        resultHTML += `<p>ไม่พบรายการบุคลากร</p>`;
+      }
+    } else {
+      resultHTML += `<p>ไม่พบข้อมูลบุคลากร</p>`;
+    }
+    
+    resultHTML += `</div>`;
+    
+    // 4. ค่าใช้จ่ายในการบริหาร
+    resultHTML += `<div class="valuation-section"><h4>ค่าใช้จ่ายในการบริหาร</h4>`;
+    
+    if (adminCostSheet) {
+      const adminData = adminCostSheet.data;
+      
+      const totalAdminRow = adminData.find(row => 
+        row && row[0] && typeof row[0] === 'string' && 
+        row[0].toString().includes('รวมค่าใช้จ่าย')
+      );
+      
+      if (totalAdminRow && totalAdminRow.length >= 2) {
+        calculations.totalAdminCost = parseFloat(totalAdminRow[1]) || 0;
+        resultHTML += `<p><strong>ค่าใช้จ่ายบริหารรวม: ${calculations.totalAdminCost.toLocaleString('th-TH')} บาท</strong></p>`;
+      }
+      
+      // แสดงรายการค่าใช้จ่าย
+      const costItems = [];
+      for (let i = 2; i < adminData.length; i++) {
+        const row = adminData[i];
+        if (row && row[0] && typeof row[0] === 'string' && 
+            row[0].toString().trim() && 
+            !row[0].toString().includes('รวม') && 
+            !row[0].toString().includes('ค่าเสื่อม')) {
           const amount = row[1] ? parseFloat(row[1]) : 0;
           if (amount > 0) {
             costItems.push({
@@ -645,198 +816,84 @@ function analyzeBusinessValuation(data) {
               amount: amount
             });
           }
-        } else {
-          break;
         }
       }
-    }
-    
-    if (costItems.length > 0) {
-      resultHTML += `<h6>ต้นทุนการผลิต:</h6><ul>`;
-      costItems.forEach(item => {
-        resultHTML += `<li>${item.name}: ${item.amount.toLocaleString('th-TH')} บาท</li>`;
-      });
-      resultHTML += `</ul>`;
-    } else {
-      resultHTML += `<p>ไม่พบข้อมูลต้นทุนการผลิต</p>`;
-    }
-  } else {
-    resultHTML += `<p>ไม่พบข้อมูลรายได้</p>`;
-  }
-  
-  resultHTML += `</div>`;
-  
-  // ข้อมูลการลงทุน
-  resultHTML += `<div class="valuation-section"><h5>ข้อมูลการลงทุน</h5>`;
-  
-  if (investmentSheet) {
-    const investmentData = investmentSheet.data;
-    
-    // หาแถวที่มีผลรวม
-    const totalInvestmentRow = investmentData.find(row => 
-      row && row[0] && typeof row[0] === 'string' && 
-      row[0].toString().includes('รวมเงินลงทุน')
-    );
-    
-    if (totalInvestmentRow && totalInvestmentRow.length >= 2) {
-      const totalInvestment = parseFloat(totalInvestmentRow[1]) || 0;
-      resultHTML += `<p>รวมเงินลงทุนปีที่ 1: ${totalInvestment.toLocaleString('th-TH')} บาท</p>`;
-    }
-    
-    // แสดงรายการลงทุน
-    const investmentItems = [];
-    for (let i = 2; i < investmentData.length; i++) {
-      const row = investmentData[i];
-      if (row && row[0] && typeof row[0] === 'string' && 
-          row[0].toString().trim() && 
-          !row[0].toString().includes('รวม') && 
-          !row[0].toString().includes('ค่าเสื่อม')) {
-        const amount = row[1] ? parseFloat(row[1]) : 0;
-        if (amount > 0) {
-          investmentItems.push({
-            name: row[0],
-            amount: amount
-          });
-        }
+      
+      if (costItems.length > 0) {
+        resultHTML += `<h5>รายการค่าใช้จ่ายหลัก:</h5><ul>`;
+        costItems.forEach(item => {
+          resultHTML += `<li>${item.name}: ${item.amount.toLocaleString('th-TH')} บาท</li>`;
+        });
+        resultHTML += `</ul>`;
+      } else {
+        resultHTML += `<p>ไม่พบรายการค่าใช้จ่าย</p>`;
       }
-    }
-    
-    if (investmentItems.length > 0) {
-      resultHTML += `<h6>รายการลงทุนหลัก:</h6><ul>`;
-      investmentItems.forEach(item => {
-        resultHTML += `<li>${item.name}: ${item.amount.toLocaleString('th-TH')} บาท</li>`;
-      });
-      resultHTML += `</ul>`;
     } else {
-      resultHTML += `<p>ไม่พบรายการลงทุน</p>`;
+      resultHTML += `<p>ไม่พบข้อมูลค่าใช้จ่ายบริหาร</p>`;
     }
-  } else {
-    resultHTML += `<p>ไม่พบข้อมูลการลงทุน</p>`;
+    
+    resultHTML += `</div>`;
+    
+    // 5. สรุปผลการวิเคราะห์
+    calculations.netProfit = calculations.totalRevenue - calculations.totalCost - calculations.totalPersonnelCost - calculations.totalAdminCost;
+    const profitMargin = calculations.totalRevenue > 0 ? (calculations.netProfit / calculations.totalRevenue) * 100 : 0;
+    
+    resultHTML += `
+      <div class="valuation-summary">
+        <h4>สรุปผลการวิเคราะห์</h4>
+        <div class="summary-item">
+          <h5>รายได้รวม: <span>${calculations.totalRevenue.toLocaleString('th-TH')} บาท/ปี</span></h5>
+        </div>
+        <div class="summary-item">
+          <h5>ต้นทุนการผลิตรวม: <span>${calculations.totalCost.toLocaleString('th-TH')} บาท</span></h5>
+        </div>
+        <div class="summary-item">
+          <h5>ค่าใช้จ่ายบุคลากรรวม: <span>${calculations.totalPersonnelCost.toLocaleString('th-TH')} บาท/ปี</span></h5>
+        </div>
+        <div class="summary-item">
+          <h5>ค่าใช้จ่ายบริหารรวม: <span>${calculations.totalAdminCost.toLocaleString('th-TH')} บาท/ปี</span></h5>
+        </div>
+        <div class="summary-item highlight">
+          <h5>กำไรสุทธิ: <span>${calculations.netProfit.toLocaleString('th-TH')} บาท/ปี</span></h5>
+        </div>
+        <div class="summary-item highlight">
+          <h5>อัตรากำไร: <span>${profitMargin.toFixed(2)}%</span></h5>
+        </div>
+        <div class="summary-item">
+          <h5>เงินลงทุนเริ่มต้น: <span>${calculations.totalInvestment.toLocaleString('th-TH')} บาท</span></h5>
+        </div>
+        <div class="summary-item highlight">
+          <h5>ระยะเวลาคืนทุน (ปี): <span>${calculations.netProfit > 0 ? (calculations.totalInvestment / calculations.netProfit).toFixed(1) : '∞'}</span></h5>
+        </div>
+      </div>
+    `;
+    
+    resultHTML += `</div>`;
+    
+    return resultHTML;
   }
-  
-  resultHTML += `</div>`;
-  
-  // ข้อมูลบุคลากร
-  resultHTML += `<div class="valuation-section"><h5>ข้อมูลบุคลากร</h5>`;
-  
-  if (personnelSheet) {
-    const personnelData = personnelSheet.data;
-    
-    const totalPersonnelRow = personnelData.find(row => 
-      row && row[0] && typeof row[0] === 'string' && 
-      row[0].toString().includes('รวมค่าใช้จ่ายบุคลากร')
-    );
-    
-    if (totalPersonnelRow && totalPersonnelRow.length >= 2) {
-      const totalPersonnel = parseFloat(totalPersonnelRow[1]) || 0;
-      resultHTML += `<p>ค่าใช้จ่ายบุคลากรต่อปี: ${totalPersonnel.toLocaleString('th-TH')} บาท</p>`;
-    }
-    
-    // แสดงรายการบุคลากร
-    const personnelItems = [];
-    for (let i = 3; i < personnelData.length; i++) {
-      const row = personnelData[i];
-      if (row && row[0] && typeof row[0] === 'string' && 
-          row[0].toString().trim() && 
-          !row[0].toString().includes('รวม')) {
-        const salary = row[1] ? parseFloat(row[1]) : 0;
-        if (salary > 0) {
-          personnelItems.push({
-            name: row[0],
-            salary: salary
-          });
-        }
-      }
-    }
-    
-    if (personnelItems.length > 0) {
-      resultHTML += `<h6>รายการบุคลากรหลัก:</h6><ul>`;
-      personnelItems.forEach(item => {
-        resultHTML += `<li>${item.name}: ${item.salary.toLocaleString('th-TH')} บาท/เดือน</li>`;
-      });
-      resultHTML += `</ul>`;
-    } else {
-      resultHTML += `<p>ไม่พบรายการบุคลากร</p>`;
-    }
-  } else {
-    resultHTML += `<p>ไม่พบข้อมูลบุคลากร</p>`;
-  }
-  
-  resultHTML += `</div>`;
-  
-  // ค่าใช้จ่ายในการบริหาร
-  resultHTML += `<div class="valuation-section"><h5>ค่าใช้จ่ายในการบริหาร</h5>`;
-  
-  if (adminCostSheet) {
-    const adminData = adminCostSheet.data;
-    
-    const totalAdminRow = adminData.find(row => 
-      row && row[0] && typeof row[0] === 'string' && 
-      row[0].toString().includes('รวมค่าใช้จ่าย')
-    );
-    
-    if (totalAdminRow && totalAdminRow.length >= 2) {
-      const totalAdmin = parseFloat(totalAdminRow[1]) || 0;
-      resultHTML += `<p>ค่าใช้จ่ายบริหารรวม: ${totalAdmin.toLocaleString('th-TH')} บาท</p>`;
-    }
-    
-    // แสดงรายการค่าใช้จ่าย
-    const costItems = [];
-    for (let i = 2; i < adminData.length; i++) {
-      const row = adminData[i];
-      if (row && row[0] && typeof row[0] === 'string' && 
-          row[0].toString().trim() && 
-          !row[0].toString().includes('รวม') && 
-          !row[0].toString().includes('ค่าเสื่อม')) {
-        const amount = row[1] ? parseFloat(row[1]) : 0;
-        if (amount > 0) {
-          costItems.push({
-            name: row[0],
-            amount: amount
-          });
-        }
-      }
-    }
-    
-    if (costItems.length > 0) {
-      resultHTML += `<h6>รายการค่าใช้จ่ายหลัก:</h6><ul>`;
-      costItems.forEach(item => {
-        resultHTML += `<li>${item.name}: ${item.amount.toLocaleString('th-TH')} บาท</li>`;
-      });
-      resultHTML += `</ul>`;
-    } else {
-      resultHTML += `<p>ไม่พบรายการค่าใช้จ่าย</p>`;
-    }
-  } else {
-    resultHTML += `<p>ไม่พบข้อมูลค่าใช้จ่ายบริหาร</p>`;
-  }
-  
-  resultHTML += `</div></div>`;
-  
-  return resultHTML;
-}
 
-// ฟังก์ชันช่วยเหลือ
-function findPriceRow(data, productRowIndex) {
-  if (!Array.isArray(data)) return -1;
-  
-  for (let i = productRowIndex + 1; i < data.length; i++) {
-    const row = data[i];
-    if (row && row[0] && typeof row[0] === 'string' && 
-        row[0].toString().includes('ราคาต่อหน่วย')) {
-      return i;
+  // ฟังก์ชันช่วยเหลือ
+  function findPriceRow(data, productRowIndex) {
+    if (!Array.isArray(data)) return -1;
+    
+    for (let i = productRowIndex + 1; i < data.length; i++) {
+      const row = data[i];
+      if (row && row[0] && typeof row[0] === 'string' && 
+          row[0].toString().includes('ราคาต่อหน่วย')) {
+        return i;
+      }
     }
+    return -1;
   }
-  return -1;
-}
 
-function formatNumber(value) {
-  if (typeof value === 'string' && value.startsWith('=')) {
-    return 'สูตรคำนวณ';
+  function formatNumber(value) {
+    if (typeof value === 'string' && value.startsWith('=')) {
+      return 'สูตรคำนวณ';
+    }
+    const num = parseFloat(value) || 0;
+    return num.toLocaleString('th-TH', {minimumFractionDigits: 2, maximumFractionDigits: 2});
   }
-  const num = parseFloat(value) || 0;
-  return num.toLocaleString('th-TH', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-}
 
   // Event Listeners
   uploadBtn.addEventListener('click', async function() {
